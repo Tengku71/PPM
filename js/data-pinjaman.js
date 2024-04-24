@@ -25,71 +25,91 @@ const logoutBtn = document.querySelector(".logout-btn");
 // Hover Dashboard
 
 dashboardBtn.addEventListener("mouseenter", function () {
-  dashboardBtn.classList.add("btn-success");
+  dashboardBtn.classList.add("color-green");
+  dashboardBtn.classList.add("text-light");
   dashboardSvg.style.fill = "white";
-  data_pinjamanBtn.classList.remove("btn-success");
+  data_pinjamanBtn.classList.remove("color-green");
+  data_pinjamanBtn.classList.add("text-dark");
   data_pinjamanSvg.style.fill = "black";
 });
 dashboardBtn.addEventListener("mouseleave", function () {
-  dashboardBtn.classList.remove("btn-success");
+  dashboardBtn.classList.remove("color-green");
+  dashboardBtn.classList.remove("text-light");
   dashboardSvg.style.fill = "black";
-  data_pinjamanBtn.classList.add("btn-success");
+  data_pinjamanBtn.classList.add("color-green");
+  data_pinjamanBtn.classList.remove("text-dark");
   data_pinjamanSvg.style.fill = "white";
 });
 
 // Hover Data Siswa
 data_siswaBtn.addEventListener("mouseenter", function () {
-  data_siswaBtn.classList.add("btn-success");
+  data_siswaBtn.classList.add("color-green");
+  data_siswaBtn.classList.add("text-light");
   data_siswaSvg.style.fill = "white";
-  data_pinjamanBtn.classList.remove("btn-success");
+  data_pinjamanBtn.classList.remove("color-green");
+  data_pinjamanBtn.classList.add("text-dark");
   data_pinjamanSvg.style.fill = "black";
 });
 data_siswaBtn.addEventListener("mouseleave", function () {
-  data_siswaBtn.classList.remove("btn-success");
+  data_siswaBtn.classList.remove("color-green");
+  data_siswaBtn.classList.remove("text-light");
   data_siswaSvg.style.fill = "black";
-  data_pinjamanBtn.classList.add("btn-success");
+  data_pinjamanBtn.classList.add("color-green");
+  data_pinjamanBtn.classList.remove("text-dark");
   data_pinjamanSvg.style.fill = "white";
 });
 
 // Hover Data Buku
 data_bukuBtn.addEventListener("mouseenter", function () {
-  data_bukuBtn.classList.add("btn-success");
+  data_bukuBtn.classList.add("color-green");
+  data_bukuBtn.classList.add("text-light");
   data_bukuSvg.style.fill = "white";
-  data_pinjamanBtn.classList.remove("btn-success");
+  data_pinjamanBtn.classList.remove("color-green");
+  data_pinjamanBtn.classList.add("text-dark");
   data_pinjamanSvg.style.fill = "black";
 });
 data_bukuBtn.addEventListener("mouseleave", function () {
-  data_bukuBtn.classList.remove("btn-success");
+  data_bukuBtn.classList.remove("color-green");
+  data_bukuBtn.classList.remove("text-light");
   data_bukuSvg.style.fill = "black";
-  data_pinjamanBtn.classList.add("btn-success");
+  data_pinjamanBtn.classList.add("color-green");
+  data_pinjamanBtn.classList.remove("text-dark");
   data_pinjamanSvg.style.fill = "white";
 });
 
 // Hover Pinjaman
 pinjamanBtn.addEventListener("mouseenter", function () {
-  pinjamanBtn.classList.add("btn-success");
+  pinjamanBtn.classList.add("color-green");
+  pinjamanBtn.classList.add("text-light");
   pinjamanSvg.style.fill = "white";
-  data_pinjamanBtn.classList.remove("btn-success");
+  data_pinjamanBtn.classList.remove("color-green");
+  data_pinjamanBtn.classList.add("text-dark");
   data_pinjamanSvg.style.fill = "black";
 });
 pinjamanBtn.addEventListener("mouseleave", function () {
-  pinjamanBtn.classList.remove("btn-success");
+  pinjamanBtn.classList.remove("color-green");
+  pinjamanBtn.classList.remove("text-light");
   pinjamanSvg.style.fill = "black";
-  data_pinjamanBtn.classList.add("btn-success");
+  data_pinjamanBtn.classList.add("color-green");
+  data_pinjamanBtn.classList.remove("text-dark");
   data_pinjamanSvg.style.fill = "white";
 });
 
 // Hover Logout
 logoutBtn.addEventListener("mouseenter", function () {
-  logoutBtn.classList.add("btn-success");
+  logoutBtn.classList.add("color-green");
+  logoutBtn.classList.add("text-light");
   logoutSvg.style.fill = "white";
-  data_pinjamanBtn.classList.remove("btn-success");
+  data_pinjamanBtn.classList.remove("color-green");
+  data_pinjamanBtn.classList.add("text-dark");
   data_pinjamanSvg.style.fill = "black";
 });
 logoutBtn.addEventListener("mouseleave", function () {
-  logoutBtn.classList.remove("btn-success");
+  logoutBtn.classList.remove("color-green");
+  logoutBtn.classList.remove("text-light");
   logoutSvg.style.fill = "black";
-  data_pinjamanBtn.classList.add("btn-success");
+  data_pinjamanBtn.classList.add("color-green");
+  data_pinjamanBtn.classList.remove("text-dark");
   data_pinjamanSvg.style.fill = "white";
 });
 
@@ -121,9 +141,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <td class="col-2">${row.tanggal_peminjaman}</td>
                     <td class="col-2">${status}</td>
                     <td class="col-2">
-                        <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn btn-secondary"><img src="img/icon/pencil.svg" alt=""></a>
-                        <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-                        <a href="pinjaman/tampil.php?id=${row.id}" class="col btn btn-info"><img src="img/icon/eye.svg" alt=""></a>
+                        <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
+                        <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
+                        <a href="pinjaman/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                     </td>
                 `;        
         searchResults.appendChild(newRow);
@@ -139,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   searchResults.addEventListener("click", function(event) {
     if (event.target.classList.contains("delete-btn")) {
       const id = event.target.getAttribute("data-id");
-      const deleteLink = document.querySelector("#hapus_konfirmasi a.btn-danger");
+      const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
       deleteLink.href = `pinjaman/delete.php?id=${id}`;
     }
   });
@@ -194,9 +214,9 @@ async function handleInput(event) {
                     <td class="col-2">${row.tanggal_peminjaman}</td>
                     <td class="col-2">${status}</td>
                     <td class="col-2">
-                        <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn btn-secondary"><img src="img/icon/pencil.svg" alt=""></a>
-                        <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-                        <a href="pinjaman/tampil.php?id=${row.id}" class="col btn btn-info"><img src="img/icon/eye.svg" alt=""></a>
+                        <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
+                        <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
+                        <a href="pinjaman/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                     </td>
                 `;
         searchResults.appendChild(newRow);
@@ -212,7 +232,7 @@ async function handleInput(event) {
   searchResults.addEventListener("click", function(event) {
     if (event.target.classList.contains("delete-btn")) {
       const id = event.target.getAttribute("data-id");
-      const deleteLink = document.querySelector("#hapus_konfirmasi a.btn-danger");
+      const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
       deleteLink.href = `pinjaman/delete.php?id=${id}`;
     }
   });
@@ -268,9 +288,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <td class="col-2">${row.tanggal_peminjaman}</td>
                     <td class="col-2">${status}</td>
                     <td class="col-2">
-                        <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn btn-secondary"><img src="img/icon/pencil.svg" alt=""></a>
-                        <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-                        <a href="pinjaman/tampil.php?id=${row.id}" class="col btn btn-info"><img src="img/icon/eye.svg" alt=""></a>
+                        <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
+                        <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
+                        <a href="pinjaman/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                     </td>
                 `;
           searchResults.appendChild(newRow);
@@ -285,7 +305,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     searchResults.addEventListener("click", function(event) {
       if (event.target.classList.contains("delete-btn")) {
         const id = event.target.getAttribute("data-id");
-        const deleteLink = document.querySelector("#hapus_konfirmasi a.btn-danger");
+        const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
         deleteLink.href = `pinjaman/delete.php?id=${id}`;
       }
     });

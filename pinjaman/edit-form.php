@@ -18,7 +18,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Siswa</title>
+    <link rel="shortcut icon" type="../image/png" href="img/logo.jpeg" />
     <link href="../bootstrap5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap5/css/style.css" rel="stylesheet">
     <script src="../bootstrap5/js/bootstrap.bundle.min.js"></script>
   </head>
   <body style="height: 100vh;">
@@ -72,7 +74,7 @@
           <div class="transaksi w-100">
             <p class="fw-bold">TRANSAKSI</p>
             <!-- Pinjaman -->
-            <a href="../pinjaman.php" class="pinjaman-btn btn btn-success d-flex align-items-center ">
+            <a href="../pinjaman.php" class="pinjaman-btn btn color-green text-light d-flex align-items-center ">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-journal-text me-2 pinjaman-svg" viewBox="0 0 16 16">
                 <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
                 <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
@@ -110,7 +112,7 @@
     <div class="right-side bg-body-tertiary container-fluid mx-0">
           <!-- Account Logo -->
       <div class="header-right d-flex justify-content-end mb-2">
-        <a class="account btn mt-3" href="">
+        <a class="account btn mt-3" href="../users/edit-form.php">
           <img src="../img/icon/person-circle.svg" alt="">
         </a>
       </div>
@@ -148,8 +150,8 @@
             
           </div>
 
-          <a class="btn btn-success px-4 my-5 me-4" href="../data-pinjaman.php">Kembali</a>
-          <button type="submit" class="btn btn-success px-4 mb-3 my-3">Edit</button>
+          <a class="btn color-green text-light px-4 my-5 me-4" href="../data-pinjaman.php">Kembali</a>
+          <button type="submit" class="btn color-green text-light px-4 mb-3 my-3">Edit</button>
           <?php
              } else {
               echo "Error: " . mysqli_error($conn);

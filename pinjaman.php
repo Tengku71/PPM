@@ -10,7 +10,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinjaman</title>
+    <link rel="shortcut icon" type="image/png" href="img/logo.jpeg" />
     <link href="bootstrap5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap5/css/style.css" rel="stylesheet">
     <script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
   </head>
   <body style="height: 100vh;">
@@ -64,7 +66,7 @@
           <div class="transaksi w-100">
             <p class="fw-bold">TRANSAKSI</p>
             <!-- Pinjaman -->
-            <a href="pinjaman.php" class="pinjaman-btn btn btn-success d-flex align-items-center ">
+            <a href="pinjaman.php" class="pinjaman-btn btn color-green text-light d-flex align-items-center ">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-journal-text me-2 pinjaman-svg" viewBox="0 0 16 16">
                 <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
                 <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
@@ -87,7 +89,7 @@
           <div class="auth w-100">
             <p class="fw-bold">AUTH</p>
             <!-- Logout -->
-            <a href="" class="logout-btn btn d-flex align-items-center ">
+            <a href="logout.php" class="logout-btn btn d-flex align-items-center ">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left me-2 logout-svg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
                 <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
@@ -102,7 +104,7 @@
     <div class="right-side bg-body-tertiary container-fluid mx-0">
       <!-- Account Logo -->
       <div class="header-right d-flex justify-content-end mb-2">
-        <a class="account btn mt-3" href="">
+        <a class="account btn mt-3" href="users/edit-form.php">
           <img src="img/icon/person-circle.svg" alt="">
         </a>
       </div>
@@ -138,8 +140,8 @@
               <span id="tanggal-pengembalian-error" class="text-danger"></span>
             </div>
           </div>
-          <a class="btn btn-success px-4 my-5 me-4" href="data-pinjaman.php">Kembali</a>
-          <button type="submit" class="btn btn-success px-4">Simpan</button>
+          <a class="btn color-green text-light px-4 my-5 me-4" href="data-pinjaman.php">Kembali</a>
+          <button type="submit" class="btn color-green text-light px-4">Simpan</button>
         </form>
       </div>
     </div>

@@ -24,71 +24,91 @@ const logoutBtn = document.querySelector(".logout-btn");
 
 // Hover Dashboard
 dashboardBtn.addEventListener("mouseenter", function () {
-  dashboardBtn.classList.add("btn-success");
+  dashboardBtn.classList.add("color-green");
+  dashboardBtn.classList.add("text-light");
   dashboardSvg.style.fill = "white";
-  pinjamanBtn.classList.remove("btn-success");
+  pinjamanBtn.classList.remove("color-green");
+  pinjamanBtn.classList.add("text-dark");
   pinjamanSvg.style.fill = "black";
 });
 dashboardBtn.addEventListener("mouseleave", function () {
-  dashboardBtn.classList.remove("btn-success");
+  dashboardBtn.classList.remove("color-green");
+  dashboardBtn.classList.remove("text-light");
   dashboardSvg.style.fill = "black";
-  pinjamanBtn.classList.add("btn-success");
+  pinjamanBtn.classList.add("color-green");
+  pinjamanBtn.classList.remove("text-dark");
   pinjamanSvg.style.fill = "white";
 });
 
 // Hover Data Siswa
 data_siswaBtn.addEventListener("mouseenter", function () {
-  data_siswaBtn.classList.add("btn-success");
+  data_siswaBtn.classList.add("color-green");
+  data_siswaBtn.classList.add("text-light");
   data_siswaSvg.style.fill = "white";
-  pinjamanBtn.classList.remove("btn-success");
+  pinjamanBtn.classList.remove("color-green");
+  pinjamanBtn.classList.add("text-dark");
   pinjamanSvg.style.fill = "black";
 });
 data_siswaBtn.addEventListener("mouseleave", function () {
-  data_siswaBtn.classList.remove("btn-success");
+  data_siswaBtn.classList.remove("color-green");
+  data_siswaBtn.classList.remove("text-light");
   data_siswaSvg.style.fill = "black";
-  pinjamanBtn.classList.add("btn-success");
+  pinjamanBtn.classList.add("color-green");
+  pinjamanBtn.classList.remove("text-dark");
   pinjamanSvg.style.fill = "white";
 });
 
 // Hover Data Buku
 data_bukuBtn.addEventListener("mouseenter", function () {
-  data_bukuBtn.classList.add("btn-success");
+  data_bukuBtn.classList.add("color-green");
+  data_bukuBtn.classList.add("text-light");
   data_bukuSvg.style.fill = "white";
-  pinjamanBtn.classList.remove("btn-success");
+  pinjamanBtn.classList.remove("color-green");
+  pinjamanBtn.classList.add("text-dark");
   pinjamanSvg.style.fill = "black";
 });
 data_bukuBtn.addEventListener("mouseleave", function () {
-  data_bukuBtn.classList.remove("btn-success");
+  data_bukuBtn.classList.remove("color-green");
+  data_bukuBtn.classList.remove("text-light");
   data_bukuSvg.style.fill = "black";
-  pinjamanBtn.classList.add("btn-success");
+  pinjamanBtn.classList.add("color-green");
+  pinjamanBtn.classList.remove("text-dark");
   pinjamanSvg.style.fill = "white";
 });
 
 // Hover Data Pinjaman
 data_pinjamanBtn.addEventListener("mouseenter", function () {
-  data_pinjamanBtn.classList.add("btn-success");
+  data_pinjamanBtn.classList.add("color-green");
+  data_pinjamanBtn.classList.add("text-light");
   data_pinjamanSvg.style.fill = "white";
-  pinjamanBtn.classList.remove("btn-success");
+  pinjamanBtn.classList.remove("color-green");
+  pinjamanBtn.classList.add("text-dark");
   pinjamanSvg.style.fill = "black";
 });
 data_pinjamanBtn.addEventListener("mouseleave", function () {
-  data_pinjamanBtn.classList.remove("btn-success");
+  data_pinjamanBtn.classList.remove("color-green");
+  data_pinjamanBtn.classList.remove("text-light");
   data_pinjamanSvg.style.fill = "black";
-  pinjamanBtn.classList.add("btn-success");
+  pinjamanBtn.classList.add("color-green");
+  pinjamanBtn.classList.remove("text-dark");
   pinjamanSvg.style.fill = "white";
 });
 
 // Hover Logout
 logoutBtn.addEventListener("mouseenter", function () {
-  logoutBtn.classList.add("btn-success");
+  logoutBtn.classList.add("color-green");
+  logoutBtn.classList.add("text-light");
   logoutSvg.style.fill = "white";
-  pinjamanBtn.classList.remove("btn-success");
+  pinjamanBtn.classList.remove("color-green");
+  pinjamanBtn.classList.add("text-dark");
   pinjamanSvg.style.fill = "black";
 });
 logoutBtn.addEventListener("mouseleave", function () {
-  logoutBtn.classList.remove("btn-success");
+  logoutBtn.classList.remove("color-green");
+  logoutBtn.classList.remove("text-light");
   logoutSvg.style.fill = "black";
-  pinjamanBtn.classList.add("btn-success");
+  pinjamanBtn.classList.add("color-green");
+  pinjamanBtn.classList.remove("text-dark");
   pinjamanSvg.style.fill = "white";
 });
 

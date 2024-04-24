@@ -15,7 +15,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Siswa</title>
+    <link rel="shortcut icon" type="../image/png" href="img/logo.jpeg" />
     <link href="../bootstrap5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap5/css/style.css" rel="stylesheet">
     <script src="../bootstrap5/js/bootstrap.bundle.min.js"></script>
   </head>
   <body style="height: 100vh;">
@@ -48,7 +50,7 @@
           <div class="master-data w-100">
             <p class="fw-bold">MASTER DATA</p>
             <!-- Data Siswa -->
-            <a href="../data-siswa.php" class="data-siswa-btn btn btn-success d-flex align-items-center">
+            <a href="../data-siswa.php" class="data-siswa-btn btn color-green text-light d-flex align-items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-person me-2 data-siswa-svg" viewBox="0 0 16 16">
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
               </svg>
@@ -107,7 +109,7 @@
     <div class="right-side bg-body-tertiary container-fluid mx-0">
           <!-- Account Logo -->
       <div class="header-right d-flex justify-content-end mb-2">
-        <a class="account btn mt-3" href="">
+        <a class="account btn mt-3" href="../users/edit-form.php">
           <img src="../img/icon/person-circle.svg" alt="">
         </a>
       </div>
@@ -151,8 +153,8 @@
             </div>
           </div>
 
-          <a class="btn btn-success px-4 my-5 me-4" href="../data-siswa.php">Kembali</a>
-          <button type="submit" class="btn btn-success px-4 mb-3 my-3">Edit</button>
+          <a class="btn color-green text-light px-4 my-5 me-4" href="../data-siswa.php">Kembali</a>
+          <button type="submit" class="btn color-green text-light px-4 mb-3 my-3">Edit</button>
           <?php
              } else {
               echo "Error: " . mysqli_error($conn);

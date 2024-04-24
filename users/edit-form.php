@@ -16,7 +16,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Siswa</title>
+    <link rel="shortcut icon" type="../image/png" href="img/logo.jpeg" />
     <link href="../bootstrap5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap5/css/style.css" rel="stylesheet">
     <script src="../bootstrap5/js/bootstrap.bundle.min.js"></script>
   </head>
   <body style="height: 100vh;">
@@ -37,7 +39,7 @@
           <div class="home w-100">
             <p class="fw-bold">HOME</p>
             <div class="dashboard">
-              <a href="../dashboard.php" class="btn dashboard-btn btn-success d-flex align-items-center">
+              <a href="../dashboard.php" class="btn dashboard-btn color-green text-light d-flex align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-grid me-2 dashboard-svg" viewBox="0 0 16 16">
                   <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
                 </svg>
@@ -138,8 +140,8 @@
             <input type="text" class="form-control" name="password" id="password" name="password" value="<?php echo $row["password"]?>" required>
           </div>
 
-          <a class="btn btn-success px-4 my-1 me-4" href="../dashboard.php">Kembali</a>
-          <button type="submit" class="btn btn-success px-4 mb-3 my-3">Edit</button>
+          <a class="btn color-green text-light px-4 my-1 me-4" href="../dashboard.php">Kembali</a>
+          <button type="submit" class="btn color-green text-light px-4 mb-3 my-3">Edit</button>
           <?php
              } else {
               echo "Error: " . mysqli_error($conn);

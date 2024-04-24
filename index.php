@@ -9,6 +9,7 @@
     <title>Library ponpes</title>
     <link rel="shortcut icon" type="image/png" href="img/logo.jpeg" />
     <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bootstrap5/css/style.css" />
     <!-- Other head elements -->
 
 <body>
@@ -50,7 +51,7 @@
                                             <input type="password" class="form-control" id="exampleInputPassword1"
                                                 name="pass" required />
                                             <div class="input-group-append">
-                                                <button type="button" class="btn btn-outline-success"
+                                                <button type="button" class="btn color-outline"
                                                     id="show-password-button">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
@@ -62,10 +63,10 @@
 
                                     </div>
                                     <button name="login"
-                                        class="btn btn-success w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <a class="text-success fw-bold ms-2" href="?register">Buat akun baru</a>
-                                    </div>
+                                        class="btn color-green text-light w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
+                                    <!-- <div class="d-flex align-items-center justify-content-center">
+                                        <a class="text-color-green fw-bold ms-2" href="?register">Buat akun baru</a>
+                                    </div> -->
                                 </form>
                                 <?php } else { ?>
                                 <p class="text-center">Daftar sebagai pengguna baru</p>
@@ -102,7 +103,7 @@
                                         </div>
                                     </div>
                                     <button name="register"
-                                        class="btn btn-success w-100 py-8 fs-4 mb-4 rounded-2">Daftar</button>
+                                        class="btn color-green text-light w-100 py-8 fs-4 mb-4 rounded-2">Daftar</button>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-bold">Sudah punya akun?<a
                                                 class="text-success fw-bold ms-2" href="?login">Login

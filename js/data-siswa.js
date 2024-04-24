@@ -24,71 +24,91 @@ const logoutBtn = document.querySelector(".logout-btn");
 
 // Hover Dashboard
 dashboardBtn.addEventListener("mouseenter", function () {
-  dashboardBtn.classList.add("btn-success");
+  dashboardBtn.classList.add("color-green");
+  dashboardBtn.classList.add("text-light");
   dashboardSvg.style.fill = "white";
-  data_siswaBtn.classList.remove("btn-success");
+  data_siswaBtn.classList.remove("color-green");
+  data_siswaBtn.classList.add("text-dark");
   data_siswaSvg.style.fill = "black";
 });
 dashboardBtn.addEventListener("mouseleave", function () {
-  dashboardBtn.classList.remove("btn-success");
+  dashboardBtn.classList.remove("color-green");
+  dashboardBtn.classList.remove("text-light");
   dashboardSvg.style.fill = "black";
-  data_siswaBtn.classList.add("btn-success");
+  data_siswaBtn.classList.add("color-green");
+  data_siswaBtn.classList.remove("text-dark");
   data_siswaSvg.style.fill = "white";
 });
 
 // Hover Data Buku
 data_bukuBtn.addEventListener("mouseenter", function () {
-  data_bukuBtn.classList.add("btn-success");
+  data_bukuBtn.classList.add("color-green");
+  data_bukuBtn.classList.add("text-light");
   data_bukuSvg.style.fill = "white";
-  data_siswaBtn.classList.remove("btn-success");
+  data_siswaBtn.classList.remove("color-green");
+  data_siswaBtn.classList.add("text-dark");
   data_siswaSvg.style.fill = "black";
 });
 data_bukuBtn.addEventListener("mouseleave", function () {
-  data_bukuBtn.classList.remove("btn-success");
+  data_bukuBtn.classList.remove("color-green");
+  data_bukuBtn.classList.remove("text-light");
   data_bukuSvg.style.fill = "black";
-  data_siswaBtn.classList.add("btn-success");
+  data_siswaBtn.classList.add("color-green");
+  data_siswaBtn.classList.remove("text-dark");
   data_siswaSvg.style.fill = "white";
 });
 
 // Hover Pinjaman
 pinjamanBtn.addEventListener("mouseenter", function () {
-  pinjamanBtn.classList.add("btn-success");
+  pinjamanBtn.classList.add("color-green");
+  pinjamanBtn.classList.add("text-light");
   pinjamanSvg.style.fill = "white";
-  data_siswaBtn.classList.remove("btn-success");
+  data_siswaBtn.classList.remove("color-green");
+  data_siswaBtn.classList.add("text-dark");
   data_siswaSvg.style.fill = "black";
 });
 pinjamanBtn.addEventListener("mouseleave", function () {
-  pinjamanBtn.classList.remove("btn-success");
+  pinjamanBtn.classList.remove("color-green");
+  pinjamanBtn.classList.remove("text-light");
   pinjamanSvg.style.fill = "black";
-  data_siswaBtn.classList.add("btn-success");
+  data_siswaBtn.classList.add("color-green");
+  data_siswaBtn.classList.remove("text-dark");
   data_siswaSvg.style.fill = "white";
 });
 
 // Hover Data Pinjaman
 data_pinjamanBtn.addEventListener("mouseenter", function () {
-  data_pinjamanBtn.classList.add("btn-success");
+  data_pinjamanBtn.classList.add("color-green");
+  data_pinjamanBtn.classList.add("text-light");
   data_pinjamanSvg.style.fill = "white";
-  data_siswaBtn.classList.remove("btn-success");
+  data_siswaBtn.classList.remove("color-green");
+  data_siswaBtn.classList.add("text-dark");
   data_siswaSvg.style.fill = "black";
 });
 data_pinjamanBtn.addEventListener("mouseleave", function () {
-  data_pinjamanBtn.classList.remove("btn-success");
+  data_pinjamanBtn.classList.remove("color-green");
+  data_pinjamanBtn.classList.remove("text-light");
   data_pinjamanSvg.style.fill = "black";
-  data_siswaBtn.classList.add("btn-success");
+  data_siswaBtn.classList.add("color-green");
+  data_siswaBtn.classList.remove("text-dark");
   data_siswaSvg.style.fill = "white";
 });
 
 // Hover Logout
 logoutBtn.addEventListener("mouseenter", function () {
-  logoutBtn.classList.add("btn-success");
+  logoutBtn.classList.add("color-green");
+  logoutBtn.classList.add("text-light");
   logoutSvg.style.fill = "white";
-  data_siswaBtn.classList.remove("btn-success");
+  data_siswaBtn.classList.remove("color-green");
+  data_siswaBtn.classList.add("text-dark");
   data_siswaSvg.style.fill = "black";
 });
 logoutBtn.addEventListener("mouseleave", function () {
-  logoutBtn.classList.remove("btn-success");
+  logoutBtn.classList.remove("color-green");
+  logoutBtn.classList.remove("text-light");
   logoutSvg.style.fill = "black";
-  data_siswaBtn.classList.add("btn-success");
+  data_siswaBtn.classList.add("color-green");
+  data_siswaBtn.classList.remove("text-dark");
   data_siswaSvg.style.fill = "white";
 });
 
@@ -117,14 +137,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <td class="col-2">${row.nis}</td>
                     <td class="col-1">${row.kelas}</td>
                     <td class="col-2">
-                        <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "bg-success" : "bg-primary"}">
+                        <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
                             ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
                         </p>
                     </td>
                     <td class="col-2 row-col">
-                        <a href="siswa/edit-form.php?id=${row.id}" class="col btn btn-secondary"><img src="img/icon/pencil.svg" alt=""></a>
+                        <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
                         <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-                        <a href="siswa/tampil.php?id=${row.id}" class="col btn btn-info"><img src="img/icon/eye.svg" alt=""></a>
+                        <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                     </td>
                 `;
         const deleteButtons = document.querySelectorAll(".delete-btn");
@@ -194,14 +214,14 @@ async function handleInput(event) {
                     <td class="col-2">${row.nis}</td>
                     <td class="col-1">${row.kelas}</td>
                     <td class="col-2">
-                        <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "bg-success" : "bg-primary"}">
+                        <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
                             ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
                         </p>
                     </td>
                     <td class="col-2 row-col">
-                        <a href="siswa/edit-form.php?id=${row.id}" class="col btn btn-secondary"><img src="img/icon/pencil.svg" alt=""></a>
+                        <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
                         <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-                        <a href="siswa/tampil.php?id=${row.id}" class="col btn btn-info"><img src="img/icon/eye.svg" alt=""></a>
+                        <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                     </td>
                 `;
         const deleteButtons = document.querySelectorAll(".delete-btn");
@@ -270,14 +290,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <td class="col-2">${row.nis}</td>
                         <td class="col-1">${row.kelas}</td>
                         <td class="col-2">
-                            <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "bg-success" : "bg-primary"}">
+                            <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
                                 ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
                             </p>
                         </td>
                         <td class="col-2 row-col">
-                            <a href="siswa/edit-form.php?id=${row.id}" class="col btn btn-secondary"><img src="img/icon/pencil.svg" alt=""></a>
+                            <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
                             <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}" ><img src="img/icon/trash.svg" alt=""></button>
-                            <a href="siswa/tampil.php?id=${row.id}" class="col btn btn-info"><img src="img/icon/eye.svg" alt=""></a>
+                            <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                         </td>
                     `;
           const deleteButtons = document.querySelectorAll(".delete-btn");
@@ -357,14 +377,14 @@ selectElement.addEventListener("change", async function (event) {
           <td class="col-2">${row.nis}</td>
           <td class="col-1">${row.kelas}</td>
           <td class="col-2">
-            <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "bg-success" : "bg-primary"}">
+            <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
               ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
             </p>
           </td>
           <td class="col-2 row-col">
-            <a href="siswa/edit-form.php?id=${row.id}" class="col btn btn-secondary"><img src="img/icon/pencil.svg" alt=""></a>
+            <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
             <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-            <a href="siswa/tampil.php?id=${row.id}" class="col btn btn-info"><img src="img/icon/eye.svg" alt=""></a>
+            <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
           </td>
         `;
         const deleteButtons = document.querySelectorAll(".delete-btn");

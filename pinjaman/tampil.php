@@ -18,6 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Siswa</title>
+    <link rel="shortcut icon" type="../image/png" href="img/logo.jpeg" />
     <link href="../bootstrap5/css/bootstrap.min.css" rel="stylesheet">
     <script src="../bootstrap5/js/bootstrap.bundle.min.js"></script>
   </head>
@@ -110,7 +111,7 @@
     <div class="right-side bg-body-tertiary container-fluid mx-0">
           <!-- Account Logo -->
       <div class="header-right d-flex justify-content-end mb-2">
-        <a class="account btn mt-3" href="">
+        <a class="account btn mt-3" href="../users/edit-form.php">
           <img src="../img/icon/person-circle.svg" alt="">
         </a>
       </div>

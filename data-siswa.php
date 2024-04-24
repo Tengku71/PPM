@@ -11,7 +11,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Siswa</title>
+    <link rel="shortcut icon" type="image/png" href="img/logo.jpeg" />
     <link href="bootstrap5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap5/css/style.css" rel="stylesheet">
     <script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
   </head>
   <body style="height: 100vh;">
@@ -44,7 +46,7 @@
           <div class="master-data w-100">
             <p class="fw-bold">MASTER DATA</p>
             <!-- Data Siswa -->
-            <a href="data-siswa.php" class="data-siswa-btn btn btn-success d-flex align-items-center">
+            <a href="data-siswa.php" class="data-siswa-btn btn color-green text-light d-flex align-items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-person me-2 data-siswa-svg" viewBox="0 0 16 16">
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
               </svg>
@@ -88,7 +90,7 @@
           <div class="auth w-100">
             <p class="fw-bold">AUTH</p>
             <!-- Logout -->
-            <a href="" class="logout-btn btn d-flex align-items-center ">
+            <a href="logout.php" class="logout-btn btn d-flex align-items-center ">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left me-2 logout-svg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
                 <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
@@ -103,7 +105,7 @@
     <div class="right-side bg-body-tertiary container-fluid mx-0">
       <!-- Account Logo -->
       <div class="header-right d-flex justify-content-end mb-2">
-        <a class="account btn mt-3" href="">
+        <a class="account btn mt-3" href="users/edit-form.php">
           <img src="img/icon/person-circle.svg" alt="">
         </a>
       </div>
@@ -112,8 +114,8 @@
       <div class="sample-data-siswa bg-body shadow-sm ms-4">
         <!-- Btn Tambah Siswa -->
         <div class="action ps-3 pt-3">
-          <a href="siswa/tambah-form.php" class="tambah-btn btn btn-success">Tambah Siswa</a>
-          <!-- <a href="" class="print-btn btn btn-success ms-1">
+          <a href="siswa/tambah-form.php" class="tambah-btn btn text-light color-green">Tambah Siswa</a>
+          <!-- <a href="" class="print-btn btn color-green ms-1">
             <img src="img/icon/printer.svg" alt="">
           </a> -->
           <select class="form-select w-25 d-inline pb-2 ms-1" aria-label="Default select example">
@@ -129,10 +131,10 @@
         </div>
         <form form id="search-form" method="GET" action="siswa/search.php" class="d-flex ms-3 my-3" role="search">
           <input class="form-control me-2" type="search" id="search" placeholder="Cari siswa" aria-label="Search" name="search">
-          <button class="btn btn-success me-2 search-btn" type="submit">
+          <button class="btn color-green me-2 search-btn" type="submit">
             <img src="img/icon/search.svg" alt="">
           </button>
-          <a href="data-siswa.php" class="btn btn-success me-3">
+          <a href="data-siswa.php" class="btn text-light color-green me-3">
             Refresh
           </a>
         </form>
@@ -145,8 +147,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
-                <a type="button" class="btn btn-danger">Iya</a>
+                <button type="button" class="btn color-blue" data-bs-dismiss="modal">Tidak</button>
+                <a type="button" class="btn color-red">Iya</a>
               </div>
             </div>
           </div>
