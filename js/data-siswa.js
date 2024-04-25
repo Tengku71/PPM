@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     </td>
                     <td class="col-2 row-col">
                         <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-                        <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
+                        <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
                         <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                     </td>
                 `;
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         deleteButtons.forEach((button) => {
           button.addEventListener("click", function () {
             const id = this.getAttribute("data-id");
-            const deleteLink = document.querySelector("#hapus_konfirmasi a.btn-danger");
+            const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
             deleteLink.href = `siswa/delete.php?id=${id}`;
           });
         });
@@ -220,7 +220,7 @@ async function handleInput(event) {
                     </td>
                     <td class="col-2 row-col">
                         <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-                        <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
+                        <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
                         <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                     </td>
                 `;
@@ -228,7 +228,7 @@ async function handleInput(event) {
         deleteButtons.forEach((button) => {
           button.addEventListener("click", function () {
             const id = this.getAttribute("data-id");
-            const deleteLink = document.querySelector("#hapus_konfirmasi a.btn-danger");
+            const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
             deleteLink.href = `siswa/delete.php?id=${id}`;
           });
         });
@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         </td>
                         <td class="col-2 row-col">
                             <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-                            <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}" ><img src="img/icon/trash.svg" alt=""></button>
+                            <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}" ><img src="img/icon/trash.svg" alt=""></button>
                             <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                         </td>
                     `;
@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           deleteButtons.forEach((button) => {
             button.addEventListener("click", function () {
               const id = this.getAttribute("data-id");
-              const deleteLink = document.querySelector("#hapus_konfirmasi a.btn-danger");
+              const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
               deleteLink.href = `siswa/delete.php?id=${id}`;
             });
           });
@@ -383,7 +383,7 @@ selectElement.addEventListener("change", async function (event) {
           </td>
           <td class="col-2 row-col">
             <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-            <button class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
+            <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
             <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
           </td>
         `;
@@ -391,7 +391,7 @@ selectElement.addEventListener("change", async function (event) {
         deleteButtons.forEach((button) => {
           button.addEventListener("click", function () {
             const id = this.getAttribute("data-id");
-            const deleteLink = document.querySelector("#hapus_konfirmasi a.btn-danger");
+            const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
             deleteLink.href = `siswa/delete.php?id=${id}`;
           });
         });
