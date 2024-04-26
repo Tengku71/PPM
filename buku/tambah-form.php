@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Siswa</title>
-    <link rel="shortcut icon" type="../image/png" href="img/logo.jpeg" />
+    <link rel="shortcut icon" type="image/png" href="../img/logo.jpeg" />
     <link href="../bootstrap5/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bootstrap5/css/style.css" rel="stylesheet">
     <script src="../bootstrap5/js/bootstrap.bundle.min.js"></script>
