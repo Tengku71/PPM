@@ -120,26 +120,35 @@
           if ($result) {
             $row = mysqli_fetch_assoc($result);
         ?>
-          <div class="row mb-3 ps-4 pt-4">
-              <div class="col-2">Nama</div>
-              <div class="col-1">:</div>
-              <div class="col"><?php echo $row["nama"]?></div>
+          <div class="row mb-2 px-5 pt-4">
+            <div class="col-4">
+              <label class="my-2" for="nama">Nama</label>
+              <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $row["nama"]?>" disabled>
+              <div id="popoverContentNama" class="popover-contentNama"></div>
+            </div>
+            <div class="col">
+              <label class="my-2" for="nis">Nis</label>
+              <input type="text" class="form-control" name="nis" id="nis" value="<?php echo $row["nis"]?>" disabled>
+            </div>
+            <div class="col">
+              <label class="my-2" for="gender">Jenis Kelamin</label>
+              <input type="text" class="form-control" name="gender" id="gender" value="<?php echo ($row["gender"] == 0) ? 'PEREMPUAN' : "LAKI - LAKI" ?>" disabled>
+            </div>
           </div>
-          <div class="row mb-3 ps-4">
-              <div class="col-2">NIS</div>
-              <div class="col-1">:</div>
-              <div class="col"><?php echo $row["nis"]?></div>
-          </div>
-          <div class="row mb-3 ps-4">
-              <div class="col-2">Kelas</div>
-              <div class="col-1">:</div>
-              <div class="col"><?php echo $row["kelas"] ?></div>
-          </div>
-          <div class="row mb-3 ps-4">
-              <div class="col-2">Jenis Kelamin</div>
-              <div class="col-1">:</div>
-              <div class="col"><?php echo ($row["gender"] == 1) ? 'LAKI - LAKI' : 'PEREMPUAN' ?></div>
-          </div>
+          <div class="row mb-2 px-5">
+            <div class="col">
+              <label class="my-2" for="tingkat">Tingkat</label>
+              <input type="text" class="form-control" name="tingkat" id="tingkat" value="<?php echo $row["tingkat"] ?>"disabled>
+            </div>
+            <div class="col">
+              <label class="my-2" for="kelas">Kelas</label>
+              <input type="text" class="form-control" name="kelas" id="kelas" value="<?php echo $row["kelas"] ?>"disabled>
+            </div>
+            <div class="col">
+                <label class="my-2" for="wali_kelas">Wali Kelas</label>
+                <input type="text" class="form-control" name="wali_kelas" id="wali_kelas" value="<?php echo $row["wali_kelas"]?>" disabled>
+            </div>
+          </div>         
           
           <a class="btn color-green text-light ms-4 mt-5 mb-3" href="../data-siswa.php">Kembali</a>
         </div>

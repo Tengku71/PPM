@@ -113,58 +113,6 @@ logoutBtn.addEventListener("mouseleave", function () {
 });
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const searchResults = document.querySelector("#searchResults"); // Changed the selector to tbody
-
-  try {
-    // Fetch all data from the database when the page is loaded
-    const response = await fetch(`siswa/siswa.php`);
-    if (!response.ok) {
-      throw new Error("Error fetching data");
-    }
-    const allData = await response.json();
-
-    // Display all data in the table body
-    if (allData.length === 0) {
-      // If no data found, display a message
-      searchResults.innerHTML = "<tr><td colspan='6'>Data Siswa Tidak Ditemukan</td></tr>";
-    } else {
-      let i = 1;
-      allData.forEach(function (row) {
-        const newRow = document.createElement("tr");
-        newRow.innerHTML = `
-                    <td class="col-1">${i}</td>
-                    <td class="col-4">${row.nama}</td>
-                    <td class="col-2">${row.nis}</td>
-                    <td class="col-1">${row.kelas}</td>
-                    <td class="col-2">
-                        <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
-                            ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
-                        </p>
-                    </td>
-                    <td class="col-2 row-col">
-                        <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-                        <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-                        <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
-                    </td>
-                `;
-        const deleteButtons = document.querySelectorAll(".delete-btn");
-        deleteButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const id = this.getAttribute("data-id");
-            const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
-            deleteLink.href = `siswa/delete.php?id=${id}`;
-          });
-        });
-        searchResults.appendChild(newRow);
-        i++;
-      });
-    }
-  } catch (error) {
-    console.error(error);
-    // Handle error
-    searchResults.innerHTML = "<tr><td colspan='6'>Error fetching data</td></tr>";
-  }
-
   // Add event listener for input
   const searchForm = document.querySelector("#search-form");
   searchForm.addEventListener("input", handleInput);
@@ -209,21 +157,22 @@ async function handleInput(event) {
       searchData.forEach(function (row) {
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
-                    <td class="col-1">${i}</td>
-                    <td class="col-4">${row.nama}</td>
-                    <td class="col-2">${row.nis}</td>
-                    <td class="col-1">${row.kelas}</td>
-                    <td class="col-2">
-                        <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
+                        <td class="col-1"><input class="form-check-input" type="checkbox" value="${row.id}" id="flexCheckDefault"></td>
+                        <td class="col-1">${i}</td>
+                        <td class="col-3">${row.nama}</td>
+                        <td class="col-1">${row.nis}</td>
+                        <td class="col-1">${row.kelas}</td>
+                        <td class="col-2">
+                            <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
                             ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
-                        </p>
-                    </td>
-                    <td class="col-2 row-col">
-                        <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-                        <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-                        <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
-                    </td>
-                `;
+                            </p>
+                        </td>
+                        <td class="col-2 row-col">
+                            <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
+                            <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
+                            <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
+                        </td>
+                    `;
         const deleteButtons = document.querySelectorAll(".delete-btn");
         deleteButtons.forEach((button) => {
           button.addEventListener("click", function () {
@@ -246,6 +195,10 @@ async function handleInput(event) {
 document.addEventListener("DOMContentLoaded", async function () {
   const searchForm = document.querySelector("#search-form");
   const searchResults = document.querySelector("#searchResults"); // Changed the selector to tbody
+  const selectElement = document.querySelector("#pilih");
+  const selectAllButton = document.querySelector("#pilihSemua");
+
+  const selectedIds = [];
 
   // Function to handle search
   async function handleSearch(event) {
@@ -285,18 +238,19 @@ document.addEventListener("DOMContentLoaded", async function () {
         searchData.forEach(function (row) {
           const newRow = document.createElement("tr");
           newRow.innerHTML = `
+                        <td class="col-1"><input class="form-check-input" type="checkbox" value="${row.id}" id="flexCheckDefault"></td>
                         <td class="col-1">${i}</td>
-                        <td class="col-4">${row.nama}</td>
-                        <td class="col-2">${row.nis}</td>
+                        <td class="col-3">${row.nama}</td>
+                        <td class="col-1">${row.nis}</td>
                         <td class="col-1">${row.kelas}</td>
                         <td class="col-2">
                             <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
-                                ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
+                            ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
                             </p>
                         </td>
                         <td class="col-2 row-col">
                             <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-                            <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}" ><img src="img/icon/trash.svg" alt=""></button>
+                            <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
                             <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
                         </td>
                     `;
@@ -318,6 +272,69 @@ document.addEventListener("DOMContentLoaded", async function () {
       searchResults.innerHTML = "<tr><td colspan='6'>Error fetching data</td></tr>";
     }
   }
+  function handleSelectAll() {
+    const selectedOption = selectElement.value;
+    const checkedCheckboxes = document.querySelectorAll("#searchResults input[type='checkbox']:checked");
+    const selectedIds = [];
+
+    checkedCheckboxes.forEach((checkbox) => {
+      selectedIds.push(checkbox.value);
+    });
+
+    // Collect the IDs of checked checkboxes
+    if (selectedOption === "Edit") {
+      // Limit selection to 10 checkboxes for editing
+      if (selectedIds.length > 10) {
+          alert("Maksimal Memilih 10 Data");
+          return; // Exit function if more than 10 checkboxes selected
+          }
+      }
+
+    
+
+    // Perform actions based on the selected option
+    if (selectedOption === "Edit") {
+      if (selectedIds.length > 0) {
+        // Redirect to the edit page with selected IDs
+        window.location.href = `siswa/edit-form.php?id=${selectedIds.join(",")}`;
+      } else {
+        alert("Belum Memilih.");
+      }
+    } else if (selectedOption === "Hapus") {
+      if (selectedIds.length > 0) {
+        const confirmDelete = confirm("Apakah anda ingin menghapus data?");
+        if (confirmDelete) {
+          // Call a function to delete records based on selected IDs
+          deleteSelectedRows(selectedIds);
+        }
+      } else {
+        alert("Belum Memilih.");
+      }
+    }
+  }
+
+  // Function to delete selected rows
+  async function deleteSelectedRows(ids) {
+    try {
+      // Send a request to delete rows with the selected IDs
+      const response = await fetch(`siswa/delete.php?id=${ids.join(",")}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Error deleting rows.");
+      }
+
+      // Refresh the search results
+      handleSearch(new Event("submit"));
+    } catch (error) {
+      console.error(error);
+      alert("Error deleting rows.");
+    }
+  }
 
   // Add event listener for form submission
   searchForm.addEventListener("submit", handleSearch);
@@ -326,128 +343,269 @@ document.addEventListener("DOMContentLoaded", async function () {
   const searchBtn = document.querySelector(".search-btn");
   searchBtn.addEventListener("click", handleSearch);
 
+  selectAllButton.addEventListener("click", handleSelectAll);
+
   // Load all data on page load
   handleSearch(new Event("submit"));
+
 });
 
-// Add an event listener to the select element
-const selectElement = document.querySelector(".form-select");
-selectElement.addEventListener("change", async function (event) {
-  event.preventDefault(); // Prevent form submission
-  const selectedOption = event.target.value; // Get the selected option value
 
-  // Your existing code for handling the search based on the selected option
-  const searchResults = document.querySelector("#searchResults");
+document.addEventListener("DOMContentLoaded", function() {
+  let forms = document.querySelectorAll('.siswa-form');
 
-  try {
-    let searchData;
+  forms.forEach(function(form) {
+      let tingkatSelects = form.querySelectorAll(".tingkat");
+      let kelasSelects = form.querySelectorAll(".kelas");
 
-    // Fetch data based on the selected option
+      tingkatSelects.forEach(function(tingkatSelect, index) {
+          let kelasSelect = kelasSelects[index];
 
-    if (selectedOption == "Kelas") {
-      // If no search query, fetch all data from the database
-      const response = await fetch(`siswa/siswa.php`);
-      if (!response.ok) {
-        throw new Error("Error fetching all data");
-      }
-      searchData = await response.json();
-    } else {
-      // If there's a search query, fetch data based on the query
-      const response = await fetch(`siswa/kelas.php?cari=${selectedOption}`);
-      if (!response.ok) {
-        throw new Error("Error fetching search results");
-      }
-      searchData = await response.json();
-    }
+          // Set default value for tingkat select element
+          tingkatSelect.value = "SMK";
 
-    // Clear existing table rows
-    searchResults.innerHTML = "";
+          // Handle change event for tingkat select element
+          tingkatSelect.addEventListener("change", function() {
+              let selectedTingkat = tingkatSelect.value;
+              kelasSelect.innerHTML = ""; // Clear previous options
 
-    if (searchData.length === 0) {
-      // If no results found, display a message
-      searchResults.innerHTML = "<tr><td colspan='6'>Data Siswa Tidak Ditemukan</td></tr>";
-    } else {
-      // Append search results to the table body
-      let i = 1;
-      searchData.forEach(function (row) {
-        const newRow = document.createElement("tr");
-        newRow.innerHTML = `
-          <td class="col-1">${i}</td>
-          <td class="col-4">${row.nama}</td>
-          <td class="col-2">${row.nis}</td>
-          <td class="col-1">${row.kelas}</td>
-          <td class="col-2">
-            <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
-              ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
-            </p>
-          </td>
-          <td class="col-2 row-col">
-            <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-            <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-            <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
-          </td>
-        `;
-        const deleteButtons = document.querySelectorAll(".delete-btn");
-        deleteButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const id = this.getAttribute("data-id");
-            const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
-            deleteLink.href = `siswa/delete.php?id=${id}`;
+              if (selectedTingkat === "SMK") {
+                  // Add class options for SMK
+                  let kelasOptions = ["X DKV", "XI DKV", "XII DKV", "X PPLG", "XI PPLG", "XII PPLG"];
+                  kelasOptions.forEach(function(kelas) {
+                      let option = document.createElement("option");
+                      option.value = kelas;
+                      option.text = kelas;
+                      kelasSelect.appendChild(option);
+                  });
+              } else if (selectedTingkat === "SMP") {
+                  // Add class options for SMP
+                  let kelasOptions = ["7 A", "7 B", "7 C", "8 A", "8 B", "8 C", "9 A", "9 B", "9 C"];
+                  kelasOptions.forEach(function(kelas) {
+                      let option = document.createElement("option");
+                      option.value = kelas;
+                      option.text = kelas;
+                      kelasSelect.appendChild(option);
+                  });
+              } else {
+                  // Add default options or options for other tingkat
+                  let defaultOption = document.createElement("option");
+                  defaultOption.text = "Kelas";
+                  kelasSelect.appendChild(defaultOption);
+              }
           });
-        });
-        searchResults.appendChild(newRow);
-        i++;
+
+          // Trigger change event for initial selection
+          let event = new Event('change');
+          tingkatSelect.dispatchEvent(event);
       });
-    }
-  } catch (error) {
-    console.error(error);
-    // Handle error
-    searchResults.innerHTML = "<tr><td colspan='6'>Error fetching search results</td></tr>";
-  }
+  });
 });
 
-function validateForm() {
-  let isValid = true;
+const selectElement = document.querySelectorAll(".form-kategori");
+const searchResults = document.querySelector("#searchResults");
 
-  // Function to display error message under a field
-  function displayError(fieldId, errorMessage) {
-    document.getElementById(fieldId + "-error").innerText = errorMessage;
-    isValid = false; // Set flag to false when there's an error
-  }
+// Add event listener to each select element
+selectElement.forEach(select => {
+    select.addEventListener("change", async function (event) {
+        event.preventDefault(); // Prevent form submission
+        const selectedTingkat = document.getElementById("tingkat").value;
+        const selectedKelas = document.getElementById("kelas").value;
 
-  // Function to clear error message under a field
-  function clearError(fieldId) {
-    document.getElementById(fieldId + "-error").innerText = "";
-  }
+        try {
+            let searchData;
 
-  // Check each field for validity
-  let nama = document.getElementById("nama").value;
-  if (nama == "") {
-    displayError("nama", "Nama Tidak Boleh Kosong!");
-  } else {
-    clearError("nama");
-  }
+            // Fetch data based on the selected options
+            if (selectedTingkat === "Tingkat" && selectedKelas === "Kelas") {
+              // If no search query, fetch all data from the database
+              const response = await fetch(`siswa/siswa.php`);
+              if (!response.ok) {
+                throw new Error("Error fetching all data");
+              }
+              searchData = await response.json();
+            }else if(selectedTingkat === "SMK" && selectedKelas === "Kelas"){
+              const response = await fetch(`siswa/kelas.php?tingkat=${selectedTingkat}&kelas=${selectedKelas}`);
+              if (!response.ok) {
+                  throw new Error("Error fetching search results");
+              }
+              searchData = await response.json();
+            }else if(selectedTingkat === "SMP" && selectedKelas === "Kelas"){
+                const response = await fetch(`siswa/kelas.php?tingkat=${selectedTingkat}&kelas=${selectedKelas}`);
+                if (!response.ok) {
+                    throw new Error("Error fetching search results");
+                }
+                searchData = await response.json();
+            }else{
+              const response = await fetch(`siswa/kelas.php?tingkat=${selectedTingkat}&kelas=${selectedKelas}`);
+              if (!response.ok) {
+                  throw new Error("Error fetching search results");
+              }
+              searchData = await response.json();
+            }
 
-  let nis = document.getElementById("nis").value;
-  if (nis == "") {
-    displayError("nis", "NIS Tidak Boleh Kosong!");
-  } else {
-    clearError("nis");
-  }
+            // Clear existing table rows
+            searchResults.innerHTML = "";
 
-  let kelas = document.getElementById("kelas").value;
-  if (kelas == "") {
-    displayError("kelas", "Pilih Salah Satu!");
-  } else {
-    clearError("kelas");
-  }
+            if (searchData.length === 0) {
+                // If no results found, display a message
+                searchResults.innerHTML = "<tr><td colspan='6'>Data Siswa Tidak Ditemukan</td></tr>";
+            } else {
+                // Append search results to the table body
+                let i = 1;
+                searchData.forEach(function (row) {
+                    const newRow = document.createElement("tr");
+                    newRow.innerHTML = `
+                        <td class="col-1"><input class="form-check-input" type="checkbox" value="${row.id}" id="flexCheckDefault"></td>
+                        <td class="col-1">${i}</td>
+                        <td class="col-3">${row.nama}</td>
+                        <td class="col-1">${row.nis}</td>
+                        <td class="col-1">${row.kelas}</td>
+                        <td class="col-2">
+                            <p class="px-2 pb-2 pt-1 mb-0 rounded-3 text-light text-center ${row.gender == 1 ? "color-green" : "color-blue"}">
+                            ${row.gender == 1 ? "LAKI - LAKI" : "PEREMPUAN"}
+                            </p>
+                        </td>
+                        <td class="col-2 row-col">
+                            <a href="siswa/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
+                            <button class="col btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
+                            <a href="siswa/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
+                        </td>
+                    `;
+                    searchResults.appendChild(newRow);
+                    i++;
+                });
 
-  let gender = document.getElementById("gender").value;
-  if (gender == "") {
-    displayError("gender", "Pilih Salah Satu!");
-  } else {
-    clearError("gender");
-  }
+                // Add event listener for delete buttons after rendering
+                const deleteButtons = document.querySelectorAll(".delete-btn");
+                deleteButtons.forEach((button) => {
+                    button.addEventListener("click", function () {
+                        const id = this.getAttribute("data-id");
+                        const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
+                        deleteLink.href = `siswa/delete.php?id=${id}`;
+                    });
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            // Handle error
+            searchResults.innerHTML = "<tr><td colspan='6'>Error fetching search results</td></tr>";
+        }
+    });
+});
 
-  return isValid;
+
+document.addEventListener("DOMContentLoaded", function() {
+  let tingkatSelect = document.getElementById("tingkat");
+  let kelasSelect = document.getElementById("kelas");
+
+  tingkatSelect.addEventListener("change", function() {
+      let selectedTingkat = tingkatSelect.value;
+      kelasSelect.innerHTML = ""; // Clear previous options
+
+      if (selectedTingkat === "SMK") {
+          // Add class options for SMK
+          let kelasOptions = ["Kelas", "X DKV", "XI DKV", "XII DKV", "X PPLG", "XI PPLG", "XII PPLG"];
+          kelasOptions.forEach(function(kelas) {
+              let option = document.createElement("option");
+              option.value = kelas;
+              option.text = kelas;
+              kelasSelect.appendChild(option);
+          });
+      } else if (selectedTingkat === "SMP") {
+          // Add class options for SMP
+          let kelasOptions = ["Kelas", "7 A", "7 B", "7 C", "8 A", "8 B", "8 C", "9 A", "9 B", "9 C"];
+          kelasOptions.forEach(function(kelas) {
+              let option = document.createElement("option");
+              option.value = kelas;
+              option.text = kelas;
+              kelasSelect.appendChild(option);
+          });
+      } else {
+          // Add default options or options for other tingkat
+          let defaultOption = document.createElement("option");
+          defaultOption.text = "Kelas";
+          kelasSelect.appendChild(defaultOption);
+      }
+  });
+});
+
+let selectSiswa = document.getElementById('select-siswa');
+let allForms = document.querySelectorAll('form[class*="siswa"]');
+
+selectSiswa.addEventListener('change', function() {
+    let selectedValue = this.value;
+
+    // Hide all form sections
+    allForms.forEach(function(form) {
+        if (!form.classList.contains('siswa' + selectedValue)) {
+            form.style.display = 'none';
+        }
+    });
+
+    // Show only the selected form section
+    let selectedForm = document.querySelector('.siswa' + selectedValue);
+    if (selectedForm) {
+        selectedForm.style.display = 'block';
+    }
+});
+
+// Initially, show only the selected form section
+let initialSelectedValue = selectSiswa.value;
+let initialSelectedForm = document.querySelector('.siswa' + initialSelectedValue);
+if (initialSelectedForm) {
+    initialSelectedForm.style.display = 'block';
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  let forms = document.querySelectorAll('.siswa-form');
+
+  forms.forEach(function(form) {
+      let tingkatSelects = form.querySelectorAll(".tingkat");
+      let kelasSelects = form.querySelectorAll(".kelas");
+
+      tingkatSelects.forEach(function(tingkatSelect, index) {
+          let kelasSelect = kelasSelects[index];
+
+          // Set default value for tingkat select element
+          tingkatSelect.value = "SMK";
+
+          // Handle change event for tingkat select element
+          tingkatSelect.addEventListener("change", function() {
+              let selectedTingkat = tingkatSelect.value;
+              kelasSelect.innerHTML = ""; // Clear previous options
+
+              if (selectedTingkat === "SMK") {
+                  // Add class options for SMK
+                  let kelasOptions = ["X DKV", "XI DKV", "XII DKV", "X PPLG", "XI PPLG", "XII PPLG"];
+                  kelasOptions.forEach(function(kelas) {
+                      let option = document.createElement("option");
+                      option.value = kelas;
+                      option.text = kelas;
+                      kelasSelect.appendChild(option);
+                  });
+              } else if (selectedTingkat === "SMP") {
+                  // Add class options for SMP
+                  let kelasOptions = ["7 A", "7 B", "7 C", "8 A", "8 B", "8 C", "9 A", "9 B", "9 C"];
+                  kelasOptions.forEach(function(kelas) {
+                      let option = document.createElement("option");
+                      option.value = kelas;
+                      option.text = kelas;
+                      kelasSelect.appendChild(option);
+                  });
+              } else {
+                  // Add default options or options for other tingkat
+                  let defaultOption = document.createElement("option");
+                  defaultOption.text = "Kelas";
+                  kelasSelect.appendChild(defaultOption);
+              }
+          });
+
+          // Trigger change event for initial selection
+          let event = new Event('change');
+          tingkatSelect.dispatchEvent(event);
+      });
+  });
+});
+
+
+

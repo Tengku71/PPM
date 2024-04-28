@@ -118,6 +118,11 @@
           <!-- <a href="" class="print-btn btn color-green text-light ms-1">
             <img src="img/icon/printer.svg" alt="">
           </a> -->
+          <select class="form-select w-25 d-inline pb-2 ms-1" id="pilih" aria-label="Default select example">
+            <option selected>Pilih</option>
+            <option value="Hapus">Hapus</option>
+          </select>
+          <button id="pilihSemua" class="btn color-green text-light py-2 ms-2">Pilih</button>
         </div>
         <form form id="search-form" method="GET" action="buku/search.php" class="d-flex ms-3 my-3" role="search">
           <input class="form-control me-2" type="search" id="search" name="search" placeholder="Cari Buku" aria-label="Search">
@@ -147,11 +152,12 @@
           <table class="table w-100 ">
             <thead class="sticky-top">
               <tr>
+                <th class="col-1 ">Pilih</th>
                 <th class="col-1 ">No</th>
                 <th class="col-3">Judul</th>
                 <th class="col-2">Pengarang</th>
                 <th class="col-2">Penerbit</th>
-                <th class="col-2 text-center">Jumlah Buku</th>
+                <th class="col-1 text-center">Jumlah Buku</th>
                 <th class="col-2 text-center">Aksi</th>
               </tr>
             </thead>

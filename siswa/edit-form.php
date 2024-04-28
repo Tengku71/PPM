@@ -5,9 +5,14 @@
   }
   require_once '../koneksi.php'; 
   
-  $id = $_GET['id'];
-  $sql = "SELECT * FROM siswa WHERE id=$id";
-  $result = mysqli_query($conn, $sql);
+  $ids = $_GET['id'];
+
+  $idArray = explode(",", $ids);
+  $idArray = array_map('intval', $idArray); 
+
+  $placeholders = implode(',', array_fill(0, count($idArray), '?'));
+  $sql = "SELECT * FROM siswa WHERE id IN ($placeholders)";
+  $stmt = mysqli_prepare($conn, $sql);
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -117,49 +122,87 @@
       <h3 class="fs-3 ps-4 mt-3">Edit Siswa</h3>
       <div class="sample-data-siswa bg-body shadow-sm ms-4">
         <p class="fs-5 ps-5 pt-4">Form Edit Siswa</p>
-        <?php
-        if ($result) {
-          $row = mysqli_fetch_assoc($result);
-      ?>
-        <form class="px-5 pb-3" method="POST" action="update.php">
-          <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-          <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $row["nama"]?>" required>
-            <div id="popoverContentNama" class="popover-contentNama"></div>
-          </div>
-          <div class="mb-4">
-            <label for="nis" class="form-label">Nis</label>
-            <input type="text" class="form-control" name="nis" id="nis" value="<?php echo $row["nis"]?>" required>
-          </div>
-          <div class="row mb-4">
-            <div class="col">
-              <label for="kelas" class="form-label">Kelas</label>
-              <select name="kelas" id="kelas" class="form-select" aria-label="Default select example">
-                <option value="X DKV" <?php echo ($row["kelas"] == "X DKV") ? 'selected="selected"' : "" ?>>X DKV</option>
-                <option value="X PPLG"<?php echo ($row["kelas"] == "X PPLG") ? 'selected="selected"' : "" ?>>X PPLG</option>
-                <option value="XI DKV" <?php echo ($row["kelas"] == "XI DKV") ? 'selected="selected"' : "" ?>>XI DKV</option>
-                <option value="XI PPLG"<?php echo ($row["kelas"] == "XI PPLG") ? 'selected="selected"' : "" ?>>XI PPLG</option>
-                <option value="XII DKV" <?php echo ($row["kelas"] == "XII DKV") ? 'selected="selected"' : "" ?>>XII DKV</option>
-                <option value="XII PPLG"<?php echo ($row["kelas"] == "XII PPLG") ? 'selected="selected"' : "" ?>>XII PPLG</option>
-              </select>
+        <form class="px-5 pb-3 overflow-auto siswa-form" method="POST" action="update.php" style="height: 57vh;">
+        <div class="row mb-2">
+            <div class="col-3">
+              <label for="nama" class="form-label">Nama</label>              
+            </div>
+            <div class="col-1">
+              <label for="nis" class="form-label">Nis</label>              
             </div>
             <div class="col">
               <label for="gender" class="form-label">Jenis Kelamin</label>
-              <select name="gender" id="gender" class="form-select" aria-label="Default select example">
+            </div>
+            <div class="col">
+              <label for="tingkat" class="form-label">Tingkat</label>
+            </div>
+            <div class="col">
+              <label for="kelas" class="form-label">Kelas</label>
+            </div>           
+            <div class="col">              
+              <label for="wali_kelas" class="form-label">Wali Kelas</label>
+            </div>           
+          </div>
+        <?php
+        if ($stmt) {
+          // Bind the parameters
+          mysqli_stmt_bind_param($stmt, str_repeat('i', count($idArray)), ...$idArray);
+      
+          // Execute the statement
+          if (mysqli_stmt_execute($stmt)) {
+            // Fetch the results
+            $result = mysqli_stmt_get_result($stmt);
+      
+            // Loop through the results and display the form fields
+            while ($row = mysqli_fetch_assoc($result)) {
+      ?>
+        
+          <input type="hidden" name="id[]" value="<?php echo $row['id'] ?>">
+          <div class="row mb-2">
+            <div class="col-3">
+              <input type="text" class="form-control" name="nama[]" id="nama" value="<?php echo $row["nama"]?>" required>
+              <div id="popoverContentNama" class="popover-contentNama"></div>
+            </div>
+            <div class="col-1">
+              <input type="text" class="form-control" name="nis[]" id="nis" value="<?php echo $row["nis"]?>" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
                 <option value="0" <?php echo ($row["gender"] == 0) ? 'selected="selected"' : "" ?>>PEREMPUAN</option>
                 <option value="1" <?php echo ($row["gender"] == 1) ? 'selected="selected"' : "" ?>>LAKI - LAKI</option>
               </select>
             </div>
+            <div class="col">
+              <select name="tingkat[]" class="form-select tingkat" aria-label="Default select example">
+                <option value="SMK" <?php echo ($row["tingkat"] == "SMK") ? 'selected="selected"' : "" ?>>SMK</option>
+                <option value="SMP"<?php echo ($row["tingkat"] == "SMP") ? 'selected="selected"' : "" ?>>SMP</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="kelas[]" class="form-select kelas" aria-label="Default select example">
+                <option value="<?php echo $row["kelas"]?>" selected><?php echo $row["kelas"]?></option>
+              </select>
+            </div>           
+            <div class="col">
+                <input type="text" class="form-control" name="wali_kelas[]" id="wali_kelas" value="<?php echo $row["wali_kelas"]?>" required>
+            </div>
           </div>
 
+          
+          <?php
+            } } else {
+                  echo "Error executing statement: " . mysqli_stmt_error($stmt);
+                }
+            
+                // Close the statement
+                mysqli_stmt_close($stmt);
+              } else {
+                echo "Error preparing statement: " . mysqli_error($conn);
+              } mysqli_close($conn);
+              
+          ?>
           <a class="btn color-green text-light px-4 my-5 me-4" href="../data-siswa.php">Kembali</a>
           <button type="submit" class="btn color-green text-light px-4 mb-3 my-3">Edit</button>
-          <?php
-             } else {
-              echo "Error: " . mysqli_error($conn);
-            }
-          ?>
         </form>
       </div>
     </div>

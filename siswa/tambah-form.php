@@ -111,35 +111,965 @@
 
       <h3 class="fs-3 ps-4 mt-3">Tambah Siswa</h3>
       <div class="sample-data-siswa bg-body shadow-sm ms-4">
-        <p class="fs-5 ps-5 pt-4">Form Tambah Siswa</p>
-        <form class="px-5 pb-3" method="POST" action="tambah.php" onsubmit="return validateForm()">
-          <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" class="form-control" name="nama" id="nama">
-            <span id="nama-error" class="text-danger"></span>
-          </div>
-          <div class="mb-4">
-            <label for="nis" class="form-label">Nis</label>
-            <input type="text" class="form-control" name="nis" id="nis">
-            <span id="nis-error" class="text-danger"></span>
-          </div>
+        <div class="pt-4 pb-3">
+          <p class="fs-5 px-5 pt-4 pb-3 d-inline">Form Tambah Siswa</p>
+          <select class="form-select-siswa w-0 d-inline pb-2 ms-1" id="select-siswa" aria-label="Default select example">
+            <option value="1" selected>1 Siswa</option>
+            <option value="5">5 Siswa</option>
+            <option value="10">10 Siswa</option>
+            <option value="20">20 Siswa</option>
+          </select>
+        </div>
+        <form class="px-5 pb-3 siswa1 siswa-form" id="siswa1" method="POST" action="tambah.php" onsubmit="return validateForm()">
           <div class="row mb-4">
             <div class="col">
-              <label for="kelas" class="form-label">Kelas</label>
-              <select name="kelas" id="kelas" class="form-select" aria-label="Default select example">
-                <option value="X DKV">X DKV</option>
-                <option value="X PPLG">X PPLG</option>
-              </select>
-              <span id="kelas-error" class="text-danger"></span>
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
             </div>
             <div class="col">
+              <label for="nis" class="form-label">Nis</label>
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col-3">
               <label for="gender" class="form-label">Jenis Kelamin</label>
-              <select name="gender" id="gender" class="form-select" aria-label="Default select example">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
                 <option value="0">PEREMPUAN</option>
                 <option value="1">LAKI - LAKI</option>
               </select>
-              <span id="gender-error" class="text-danger"></span>
             </div>
+          </div>  
+            <div class="row mb-4">
+              <div class="col-2">
+                <label for="tingkat" class="form-label">Tingkat</label>
+                <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                  <option selected>SMK</option>
+                  <option value="SMP">SMP</option>
+                </select>
+              </div>
+              <div class="col-2" id="kelasDiv">
+                <label for="kelas" class="form-label">Kelas</label>
+                <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                 
+                </select>
+            </div>
+              <div class="col">
+                <label for="wali_kelas" class="form-label">Wali Kelas</label>
+                <input type="text" class="form-control" name="wali_kelas" id="wali_kelas" required>
+              </div>
+          </div>
+          <a class="btn color-green text-light px-4 my-5 me-4" href="../data-siswa.php">Kembali</a>
+          <button type="submit" class="btn color-green text-light px-4 mb-3 my-3">Tambah</button>
+        </form>
+        <form class="px-5 pb-3 siswa5 siswa-form overflow-auto" id="siswa5" method="POST" action="tambah.php" style="display: none; height: 57vh;"  onsubmit="return validateForm()">
+          <div class="row mb-2">
+            <div class="col-4">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <label for="nis" class="form-label">Nis</label>
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <label for="gender" class="form-label">Jenis Kelamin</label>
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="tingkat" class="form-label">Tingkat</label>
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <label for="kelas" class="form-label">Kelas</label>
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col-2">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col-2" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col-2">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col-2" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col-2">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col-2" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col-2">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col-2" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <label for="wali_kelas" class="form-label">Wali Kelas</label>
+            <input type="text" class="form-control" name="wali_kelas" id="wali_kelas" required>
+          </div>
+          <a class="btn color-green text-light px-4 my-5 me-4" href="../data-siswa.php">Kembali</a>
+          <button type="submit" class="btn color-green text-light px-4 mb-3 my-3">Tambah</button>
+        </form>
+        <form class="px-5 pb-3 siswa10 siswa-form overflow-auto" id="siswa10" method="POST" action="tambah.php" style="display: none; height: 57vh;"  onsubmit="return validateForm()">
+          <div class="row mb-2">
+            <div class="col-4">
+              <label for="n-4ama" class="form-label">Nama</label>
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <label for="nis" class="form-label">Nis</label>
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col-2">
+              <label for="gender" class="form-label">Jenis Kelamin</label>
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="tingkat" class="form-label">Tingkat</label>
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col-2" id="kelasDiv">
+              <label for="kelas" class="form-label">Kelas</label>
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <label for="wali_kelas" class="form-label">Wali Kelas</label>
+            <input type="text" class="form-control" name="wali_kelas" id="wali_kelas" required>
+          </div>
+          <a class="btn color-green text-light px-4 my-5 me-4" href="../data-siswa.php">Kembali</a>
+          <button type="submit" class="btn color-green text-light px-4 mb-3 my-3">Tambah</button>
+        </form>
+        <form class="px-5 pb-3 siswa20 siswa-form overflow-auto" id="siswa20" method="POST" action="tambah.php" style="display: none; height: 57vh;"  onsubmit="return validateForm()">
+          <div class="row mb-2">
+            <div class="col-4">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <label for="nis" class="form-label">Nis</label>
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col-2">
+              <label for="gender" class="form-label">Jenis Kelamin</label>
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="tingkat" class="form-label">Tingkat</label>
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col-2" id="kelasDiv">
+              <label for="kelas" class="form-label">Kelas</label>
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+              
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-4">
+              <input type="text" class="form-control" name="nama[]" id="nama" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="nis[]" id="nis" required>
+            </div>
+            <div class="col">
+              <select name="gender[]" id="gender" class="form-select" aria-label="Default select example">
+                <option value="0">PEREMPUAN</option>
+                <option value="1">LAKI - LAKI</option>
+              </select>
+            </div>
+            <div class="col">
+              <select name="tingkat[]" id="tingkat" class="form-select tingkat" aria-label="Default select example">
+                <option selected>SMK</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+            <div class="col" id="kelasDiv">
+              <select name="kelas[]" id="kelas" class="form-select kelas" aria-label="Default select example">
+                
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <label for="wali_kelas" class="form-label">Wali Kelas</label>
+            <input type="text" class="form-control" name="wali_kelas" id="wali_kelas" required>
           </div>
           <a class="btn color-green text-light px-4 my-5 me-4" href="../data-siswa.php">Kembali</a>
           <button type="submit" class="btn color-green text-light px-4 mb-3 my-3">Tambah</button>

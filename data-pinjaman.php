@@ -117,6 +117,11 @@
           <!-- <a href="" class="print-btn btn color-green text-light ms-1">
             <img src="img/icon/printer.svg" alt="">
           </a> -->
+          <select class="form-select w-25 d-inline pb-2 ms-1" id="pilih" aria-label="Default select example">
+            <option selected>Pilih</option>
+            <option value="Hapus">Hapus</option>
+          </select>
+          <button id="pilihSemua" class="btn color-green text-light py-2 ms-2">Pilih</button>
         </div>
         <form form id="search-form" method="GET" action="pinjaman/search.php" class="d-flex ms-3 my-3" role="search">
           <input class="form-control me-2" type="search" id="search" name="search" placeholder="Cari berdasarkan nama" aria-label="Search">
@@ -136,21 +141,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
-                <a type="button" class="btn btn-danger">Iya</a>
+                <button type="button" class="btn color-blue" data-bs-dismiss="modal">Tidak</button>
+                <a type="button" class="btn color-red">Iya</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="isi-data-siswa ps-3">
+        <div class="isi-data-siswa ps-3 overflow-auto" style="height: 57vh;">
           <table class="table w-100">
             <thead class="sticky-top">
               <tr>
+                <th class="col-1">Pilih</th>
                 <th class="col-1">No</th>
-                <th class="col-3">Nama</th>
+                <th class="col-2">Nama</th>
                 <th class="col-2">Buku</th>
                 <th class="col-2">Tanggal Pinjam</th>
-                <th class="col-2">Status</th>
+                <th class="col-1">Status</th>
                 <th class="col-2">Aksi</th>
               </tr>
             </thead>

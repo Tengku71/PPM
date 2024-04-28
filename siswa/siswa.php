@@ -6,7 +6,7 @@
   require_once '../koneksi.php';
 
   // Fetch all data from the database
-  $sql = "SELECT * FROM siswa ORDER BY RAND()";
+  $sql = "SELECT * FROM siswa ORDER BY RAND() LIMIT 100";
   $result = $conn->query($sql);
 
   $data = array();

@@ -114,20 +114,24 @@
       <div class="sample-data-siswa bg-body shadow-sm ms-4">
         <!-- Btn Tambah Siswa -->
         <div class="action ps-3 pt-3">
-          <a href="siswa/tambah-form.php" class="tambah-btn btn text-light color-green">Tambah Siswa</a>
+          <a href="siswa/tambah-form.php" class="tambah-btn btn text-light color-green d-inline py-2">Tambah Siswa</a>
           <!-- <a href="" class="print-btn btn color-green ms-1">
             <img src="img/icon/printer.svg" alt="">
           </a> -->
-          <select class="form-select w-25 d-inline pb-2 ms-1" aria-label="Default select example">
-            <option selected>Kelas</option>
-            <option value="X DKV">X DKV</option>
-            <option value="XI DKV">XI DKV</option>
-            <option value="XII DKV">XII DKV</option>
-            <option value="X PPLG">X PPLG</option>
-            <option value="XI PPLG">XI PPLG</option>
-            <option value="XII PPLG">XII PPLG</option>
+          <select class="form-select form-kategori w-25 d-inline pb-2 ms-1" id="tingkat" aria-label="Default select example">
+            <option selected>Tingkat</option>
+            <option value="SMK">SMK</option>
+            <option value="SMP">SMP</option>
           </select>
-
+          <select class="form-select form-kategori w-25 d-inline pb-2 ms-1" id="kelas" aria-label="Default select example">
+            <option selected>Kelas</option>
+          </select>
+          <select class="form-select w-25 d-inline pb-2 ms-1" id="pilih" aria-label="Default select example">
+            <option selected>Pilih</option>
+            <option value="Edit">Edit</option>
+            <option value="Hapus">Hapus</option>
+          </select>
+          <button id="pilihSemua" class="btn color-green text-light py-2 ms-2">Pilih</button>
         </div>
         <form form id="search-form" method="GET" action="siswa/search.php" class="d-flex ms-3 my-3" role="search">
           <input class="form-control me-2" type="search" id="search" placeholder="Cari siswa" aria-label="Search" name="search">
@@ -157,11 +161,12 @@
           <table class="table w-100">
             <thead class="sticky-top">
               <tr>
+                <th class="col-1 ">Pilih</th>
                 <th class="col-1 ">No</th>
-                <th class="col-4">Nama</th>
+                <th class="col-3">Nama</th>
                 <th class="col-2">NIS</th>
                 <th class="col-1">Kelas</th>
-                <th class="col-2">Gender</th>
+                <th class="col-1">Gender</th>
                 <th class="col-2 text-center">Aksi</th>
               </tr>
             </thead>

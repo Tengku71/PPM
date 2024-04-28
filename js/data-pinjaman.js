@@ -135,10 +135,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
+        <td class="col-1"><input class="form-check-input" type="checkbox" value="${row.id}" id="flexCheckDefault"></td>
                     <td class="col-1">${i}</td>
-                    <td class="col-3">${row.nama}</td>
+                    <td class="col-2">${row.nama}</td>
                     <td class="col-2">${row.judul}</td>
-                    <td class="col-2">${row.tanggal_peminjaman}</td>
+                    <td class="col-1">${row.tanggal_peminjaman}</td>
                     <td class="col-2">${status}</td>
                     <td class="col-2">
                         <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
@@ -208,10 +209,11 @@ async function handleInput(event) {
 
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
+        <td class="col-1"><input class="form-check-input" type="checkbox" value="${row.id}" id="flexCheckDefault"></td>
                     <td class="col-1">${i}</td>
-                    <td class="col-3">${row.nama}</td>
+                    <td class="col-2">${row.nama}</td>
                     <td class="col-2">${row.judul}</td>
-                    <td class="col-2">${row.tanggal_peminjaman}</td>
+                    <td class="col-1">${row.tanggal_peminjaman}</td>
                     <td class="col-2">${status}</td>
                     <td class="col-2">
                         <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
@@ -241,6 +243,10 @@ async function handleInput(event) {
 document.addEventListener("DOMContentLoaded", async function () {
   const searchForm = document.querySelector("#search-form");
   const searchResults = document.querySelector("#searchResults"); // Changed the selector to tbody
+  const selectAllButton = document.getElementById("pilihSemua");
+  const selectElement = document.getElementById("pilih");
+
+  const selectedIds = [];
 
   // Function to handle search
   async function handleSearch(event) {
@@ -282,10 +288,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           const newRow = document.createElement("tr");
           newRow.innerHTML = `
+          <td class="col-1"><input class="form-check-input" type="checkbox" value="${row.id}" id="flexCheckDefault"></td>
                     <td class="col-1">${i}</td>
-                    <td class="col-3">${row.nama}</td>
+                    <td class="col-2">${row.nama}</td>
                     <td class="col-2">${row.judul}</td>
-                    <td class="col-2">${row.tanggal_peminjaman}</td>
+                    <td class="col-1">${row.tanggal_peminjaman}</td>
                     <td class="col-2">${status}</td>
                     <td class="col-2">
                         <a href="pinjaman/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
@@ -309,13 +316,59 @@ document.addEventListener("DOMContentLoaded", async function () {
         deleteLink.href = `pinjaman/delete.php?id=${id}`;
       }
     });
+  }
+  function handleSelectAll() {
+    const selectedOption = selectElement.value;
+    const checkedCheckboxes = document.querySelectorAll("#searchResults input[type='checkbox']:checked");
+    const selectedIds = [];
+
+    checkedCheckboxes.forEach((checkbox) => {
+      selectedIds.push(checkbox.value);
+    });
 
 
+    
+
+    if (selectedOption === "Hapus") {
+      if (selectedIds.length > 0) {
+        const confirmDelete = confirm("Apakah anda ingin menghapus data?");
+        if (confirmDelete) {
+          // Call a function to delete records based on selected IDs
+          deleteSelectedRows(selectedIds);
+        }
+      } else {
+        alert("Belum Memilih.");
+      }
+    }
+  }
+
+  // Function to delete selected rows
+  async function deleteSelectedRows(ids) {
+    try {
+      // Send a request to delete rows with the selected IDs
+      const response = await fetch(`pinjaman/delete.php?id=${ids.join(",")}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Error deleting rows.");
+      }
+
+      // Refresh the search results
+      handleSearch(new Event("submit"));
+    } catch (error) {
+      console.error(error);
+      alert("Error deleting rows.");
+    }
   }
 
   // Add event listener for form submission
   searchForm.addEventListener("submit", handleSearch);
 
+  selectAllButton.addEventListener("click", handleSelectAll);
   // Add event listener for search button click
   const searchBtn = document.querySelector(".search-btn");
   searchBtn.addEventListener("click", handleSearch);

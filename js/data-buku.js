@@ -115,52 +115,6 @@ logoutBtn.addEventListener("mouseleave", function () {
 document.addEventListener("DOMContentLoaded", async function () {
   const searchResults = document.querySelector("#searchResults"); // Changed the selector to tbody
 
-  try {
-    // Fetch all data from the database when the page is loaded
-    const response = await fetch(`buku/buku.php`);
-    if (!response.ok) {
-      throw new Error("Error fetching data");
-    }
-    const allData = await response.json();
-
-    // Display all data in the table body
-    if (allData.length === 0) {
-      // If no data found, display a message
-      searchResults.innerHTML = "<tr><td colspan='6'>Data buku Tidak Ditemukan</td></tr>";
-    } else {
-      let i = 1;
-      allData.forEach(function (row) {
-        const newRow = document.createElement("tr");
-        newRow.innerHTML = `
-                    <td class="col-1 ">${i}</td>
-                    <td class="col-3">${row.judul}</td>
-                    <td class="col-2">${row.pengarang}</td>
-                    <td class="col-2">${row.penerbit}</td>
-                    <td class="col-2 text-center">${row.jumlah}</td>
-                    <td class="col-2 text-center">
-                    <a href="buku/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
-                    <button class=" btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
-                    <a href="buku/tampil.php?id=${row.id}" class="col btn color-blue-second"><img src="img/icon/eye.svg" alt=""></a>
-                </td>
-                `;
-        const deleteButtons = document.querySelectorAll(".delete-btn");
-        deleteButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const id = this.getAttribute("data-id");
-            const deleteLink = document.querySelector("#hapus_konfirmasi a.color-red");
-            deleteLink.href = `buku/delete.php?id=${id}`;
-          });
-        });
-        searchResults.appendChild(newRow);
-        i++;
-      });
-    }
-  } catch (error) {
-    console.error(error);
-    // Handle error
-    searchResults.innerHTML = "<tr><td colspan='6'>Error fetching data</td></tr>";
-  }
-
   // Add event listener for input
   const searchForm = document.querySelector("#search-form");
   searchForm.addEventListener("input", handleInput);
@@ -205,11 +159,12 @@ async function handleInput(event) {
       searchData.forEach(function (row) {
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
+                    <td class="col-1"><input class="form-check-input" type="checkbox" value="${row.id}" id="flexCheckDefault"></td>
                     <td class="col-1 ">${i}</td>
                     <td class="col-3">${row.judul}</td>
                     <td class="col-2">${row.pengarang}</td>
                     <td class="col-2">${row.penerbit}</td>
-                    <td class="col-2 text-center">${row.jumlah}</td>
+                    <td class="col-1 text-center">${row.jumlah}</td>
                     <td class="col-2 text-center">
                     <a href="buku/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
                       <button class=" btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
@@ -238,7 +193,10 @@ async function handleInput(event) {
 document.addEventListener("DOMContentLoaded", async function () {
   const searchForm = document.querySelector("#search-form");
   const searchResults = document.querySelector("#searchResults"); // Changed the selector to tbody
+  const selectAllButton = document.getElementById("pilihSemua");
+  const selectElement = document.getElementById("pilih");
 
+  const selectedIds = [];
   // Function to handle search
   async function handleSearch(event) {
     event.preventDefault();
@@ -277,11 +235,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         searchData.forEach(function (row) {
           const newRow = document.createElement("tr");
           newRow.innerHTML = `
+                        <td class="col-1"><input class="form-check-input" type="checkbox" value="${row.id}" id="flexCheckDefault"></td>
                         <td class="col-1 ">${i}</td>
                         <td class="col-3">${row.judul}</td>
                         <td class="col-2">${row.pengarang}</td>
                         <td class="col-2">${row.penerbit}</td>
-                        <td class="col-2 text-center">${row.jumlah}</td>
+                        <td class="col-1 text-center">${row.jumlah}</td>
                         <td class="col-2 text-center">
                         <a href="buku/edit-form.php?id=${row.id}" class="col btn color-blue"><img src="img/icon/pencil.svg" alt=""></a>
                         <button class=" btn color-red delete-btn" data-bs-toggle="modal" data-bs-target="#hapus_konfirmasi" data-id="${row.id}"><img src="img/icon/trash.svg" alt=""></button>
@@ -306,6 +265,53 @@ document.addEventListener("DOMContentLoaded", async function () {
       searchResults.innerHTML = "<tr><td colspan='6'>Error fetching data</td></tr>";
     }
   }
+  function handleSelectAll() {
+    const selectedOption = selectElement.value;
+    const checkedCheckboxes = document.querySelectorAll("#searchResults input[type='checkbox']:checked");
+    const selectedIds = [];
+
+    checkedCheckboxes.forEach((checkbox) => {
+      selectedIds.push(checkbox.value);
+    });
+
+
+    
+
+    if (selectedOption === "Hapus") {
+      if (selectedIds.length > 0) {
+        const confirmDelete = confirm("Apakah anda ingin menghapus data?");
+        if (confirmDelete) {
+          // Call a function to delete records based on selected IDs
+          deleteSelectedRows(selectedIds);
+        }
+      } else {
+        alert("Belum Memilih.");
+      }
+    }
+  }
+
+  // Function to delete selected rows
+  async function deleteSelectedRows(ids) {
+    try {
+      // Send a request to delete rows with the selected IDs
+      const response = await fetch(`buku/delete.php?id=${ids.join(",")}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Error deleting rows.");
+      }
+
+      // Refresh the search results
+      handleSearch(new Event("submit"));
+    } catch (error) {
+      console.error(error);
+      alert("Error deleting rows.");
+    }
+  }
 
   // Add event listener for form submission
   searchForm.addEventListener("submit", handleSearch);
@@ -313,6 +319,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Add event listener for search button click
   const searchBtn = document.querySelector(".search-btn");
   searchBtn.addEventListener("click", handleSearch);
+
+  selectAllButton.addEventListener("click", handleSelectAll);
 
   // Load all data on page load
   handleSearch(new Event("submit"));
